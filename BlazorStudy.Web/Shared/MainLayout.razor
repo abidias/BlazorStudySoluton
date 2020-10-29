@@ -1,15 +1,37 @@
 ﻿@inherits LayoutComponentBase
 
+<input type="checkbox" id="check" />
+
+<header>
+
+    <NavBar />
+</header>
+
 <div class="sidebar">
     <NavMenu />
 </div>
 
-<div class="main">
-    <div class="top-row px-4">
-        <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-    </div>
-
-    <div class="content px-4">
-        @Body
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                @Body
+            </div>
+        </div>
     </div>
 </div>
+
+
+@*<NavBar />
+<div class="container-fluid">
+    <div class="row">
+        <div id="sidebar" class="col-sm-3 col-md-2 shadow">
+            <NavMenu />
+        </div>
+        <div id="body-place" class="col-sm-9 col-md-10 min-vh-100">
+            @Body
+        </div>
+    </div>
+</div>*@
+
+

@@ -1,0 +1,26 @@
+﻿
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/reboot";
+@import "../node_modules/bootstrap/scss/type";
+@import "../node_modules/bootstrap/scss/images";
+@import "../node_modules/bootstrap/scss/code";
+@import "../node_modules/bootstrap/scss/grid";
+
+$body-bg: #F8FFF8;
+$body-color: #466B76;
+
+$theme-colors: ( 
+    "primary": #466B76, 
+    "secondary": #A1AF9F, 
+    "success": #44A44A, 
+    "danger": #FFAFB0, 
+    "warning": #FFCC77,
+    "info": #7AABBE,
+    "light": #E3FFE0,
+    "dark": #2F4858,
+    "top-menu": #466B76 
+); 
+
+@import "../node_modules/bootstrap/scss/bootstrap";

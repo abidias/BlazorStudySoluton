@@ -1,37 +1,103 @@
-﻿<div class="top-row pl-4 navbar navbar-dark">
-    <a class="navbar-brand" href="">BlazorStudy.Web</a>
-    <button class="navbar-toggler" @onclick="ToggleNavMenu">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-</div>
-
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <ul class="nav flex-column">
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-            </NavLink>
-        </li>
-    </ul>
-</div>
-
-@code {
-    private bool collapseNavMenu = true;
-
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private void ToggleNavMenu()
+﻿
+<div id="nav-menu" class="nav flex-column nav-pills accordion">
+    @foreach (Module module in modules)
     {
-        collapseNavMenu = !collapseNavMenu;
+        <div id="@module.Id"
+             class="btn btn-primary mb-1 text-left @module.CssClass"
+             @onclick="(() => SelectModule(module.Id))"
+             type="button"
+             data-toggle="collapse"
+             data-target="#@module.Name"
+             aria-expanded="false"
+             aria-controls="@module.Name">
+            @module.Name
+        </div>
+        <div class="collapse border border-primary rounded p-2 mb-2"
+             id="@module.Name"
+             aria-labelledby="@module.Id"
+             data-parent="#nav-menu">
+            @foreach (Item item in module.Items)
+            {
+                <NavLink class="btn btn-outline-primary btn-block text-left" href="@item.Url">@item.DisplayName</NavLink>
+            }
+        </div>
+        }
+</div>
+
+@code{
+
+    private List<Module> modules = new List<Module>()
+    {
+        new Module("Financeiro")
+        {
+            Items = new List<Item>()
+            {
+                new Item("","Home"),
+                new Item("counter","Counter"),
+                new Item("fetchdata","Fetch data")
+            }
+        },
+        new Module("Tarefas")
+        {
+            Items = new List<Item>()
+            {
+                new Item("","Home"),
+                new Item("counter","Counter"),
+                new Item("fetchdata","Fetch data")
+            }
+        },
+        new Module("Saúde")
+        {
+            Items = new List<Item>()
+            {
+                new Item("","Home"),
+                new Item("counter","Counter"),
+                new Item("fetchdata","Fetch data")
+            }
+        },
+        new Module("Casa")
+        {
+            Items = new List<Item>()
+            {
+                new Item("","Home"),
+                new Item("counter","Counter"),
+                new Item("fetchdata","Fetch data")
+            }
+        },
+    };
+
+    private void SelectModule(string idModule)
+    {
+        modules.ForEach(m => m.Selected = false);
+        modules.ForEach(m => m.Selected = m.Id == idModule);
+    }
+
+    public class Module
+    {
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public bool Selected { get; set; }
+        public List<Item> Items { get; set; }
+
+        public string CssClass { get { return Selected ? "active" : string.Empty; } }
+
+        public Module(string name)
+        {
+            Id = Guid.NewGuid().ToString();
+            Name = name;
+        }
+    }
+
+    public class Item
+    {
+        public string Url { get; set; }
+        public string DisplayName { get; set; }
+
+        public Item(string url, string displayName)
+        {
+            Url = url;
+            DisplayName = displayName;
+        }
     }
 }
+
