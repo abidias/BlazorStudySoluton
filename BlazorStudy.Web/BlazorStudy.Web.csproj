@@ -17,8 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\css\" />
-    <Folder Include="wwwroot\js\" />
+    <Folder Include="wwwroot\css\fontawesome\" />
+    <Folder Include="wwwroot\js\fontawesome\" />
   </ItemGroup>
 
 </Project>

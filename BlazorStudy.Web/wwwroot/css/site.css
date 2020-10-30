@@ -8422,7 +8422,7 @@ header {
 .sidebar {
   background-image: linear-gradient(to bottom, #E3FFE0, #638F93);
   margin-top: 56px;
-  padding: 25px 10px 30px 10px;
+  padding: 0;
   position: fixed;
   left: 0;
   width: 250px;
@@ -8430,15 +8430,48 @@ header {
   transition: 0.5s;
   transition-property: left; }
 
-.btn-sidebar-icon span {
-  font-size: 14pt;
-  margin-right: 5px; }
+.sidebar-icon {
+  margin-top: 3px;
+  margin-left: 215px;
+  font-size: 30px; }
+
+.sidebar a {
+  color: #638F93;
+  display: block;
+  width: 100%;
+  line-height: 60px;
+  text-decoration: none;
+  padding-left: 15px;
+  box-sizing: border-box;
+  transition: 0.5s;
+  transition-property: background, color; }
+
+.sidebar a.active {
+  color: #E3FFE0;
+  background: #A1AF9F; }
+
+.sidebar a span {
+  margin-left: 10px; }
+
+.sidebar a:hover {
+  color: #E3FFE0;
+  background: #7AABBE; }
 
 #check:checked ~ .sidebar {
   left: -190px; }
 
+#check:checked ~ .sidebar a span {
+  display: none; }
+
+#check:checked ~ .sidebar a {
+  font-size: 30px;
+  padding-left: 205px; }
+
 #check:checked ~ .content {
   margin-left: 60px; }
+
+#check:checked ~ .sidebar .sidebar-icon {
+  margin-left: 210px; }
 
 #check {
   display: none; }
@@ -8448,15 +8481,6 @@ header {
   margin-left: 250px;
   height: 100vh;
   transition: 0.5s; }
-
-#top-menu {
-  z-index: 999; }
-
-#sidebar, #body-place {
-  padding-top: 1rem; }
-
-#sidebar {
-  background-image: linear-gradient(to bottom, #E3FFE0, #638F93); }
 
 #blazor-error-ui {
   background: lightyellow;
